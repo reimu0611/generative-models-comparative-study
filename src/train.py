@@ -46,7 +46,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--model", choices=MODEL_REGISTRY.keys(), required=True)
     p.add_argument("--latent", type=int, default=64)
-    p.add_argument("--l1", type=float, default=1e-3, help="bobot penalti L1 (sparse AE)")
+    p.add_argument("--l1", type=float, default=1e-2, help="bobot penalti L1 (sparse AE)")
     p.add_argument("--epochs", type=int, default=30)
     p.add_argument("--batch_size", type=int, default=128)
     p.add_argument("--lr", type=float, default=1e-3)
