@@ -18,10 +18,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import get_dataloaders, get_device, set_seed  # noqa: E402
 from models.sparse_ae import SparseAE  # noqa: E402
 from models.vanilla_ae import VanillaAE  # noqa: E402
+from models.vae import VAE  # noqa: E402
 
 MODEL_REGISTRY = {
     "ae": lambda a: VanillaAE(latent_dim=a.latent),
     "sparse": lambda a: SparseAE(latent_dim=a.latent, l1_weight=a.l1),
+    "vae": lambda a: VAE(latent_dim=a.latent, beta=a.beta),
 }
 
 
@@ -47,6 +49,7 @@ def main():
     p.add_argument("--model", choices=MODEL_REGISTRY.keys(), required=True)
     p.add_argument("--latent", type=int, default=64)
     p.add_argument("--l1", type=float, default=1e-2, help="bobot penalti L1 (sparse AE)")
+    p.add_argument("--beta", type=float, default=1.0, help="bobot KL (VAE)")
     p.add_argument("--epochs", type=int, default=30)
     p.add_argument("--batch_size", type=int, default=128)
     p.add_argument("--lr", type=float, default=1e-3)
