@@ -21,9 +21,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from data import get_dataloaders, get_device, set_seed, to_minus1_1, to_zero1  # noqa: E402
 from models.vanilla_gan import VanillaDiscriminator, VanillaGenerator  # noqa: E402
+from models.dcgan import DCGANDiscriminator, DCGANGenerator  # noqa: E402
 
 MODEL_REGISTRY = {
     "gan": lambda a: (VanillaGenerator(z_dim=a.z_dim), VanillaDiscriminator()),
+    "dcgan": lambda a: (DCGANGenerator(z_dim=a.z_dim), DCGANDiscriminator()),
 }
 
 def main():
